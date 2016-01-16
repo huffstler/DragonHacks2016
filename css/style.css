@@ -1,3 +1,21 @@
+header {
+    background: salmon;
+    text-align: center;
+    color: black;
+    padding: 2%;
+}
+
 body {
-    
+    background-color: black;
+    color: white;
+}
+
+footer {
+    background: olive;
+    color: black;
+    text-align: center;
+}
+
+#login {
+    text-align: right;
 }

@@ -1,21 +1,23 @@
 package tests
 
-import "github.com/revel/revel/testing"
+import (
+	"github.com/revel/revel/testing"
+)
 
-type AppTest struct {
+type ApplicationTest struct {
 	testing.TestSuite
 }
 
-func (t *AppTest) Before() {
+func (t *ApplicationTest) Before() {
 	println("Set up")
 }
 
-func (t *AppTest) TestThatIndexPageWorks() {
+func (t *ApplicationTest) TestThatIndexPageWorks() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/html; charset=utf-8")
 }
 
-func (t *AppTest) After() {
+func (t *ApplicationTest) After() {
 	println("Tear down")
 }

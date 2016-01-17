@@ -62,8 +62,7 @@
   socket.onmessage = function(event) {
       var user = JSON.parse(event.data).User;
       var data = JSON.parse(event.data).Text.split(',');
-      console.log(user,{{.user}},(data[0]=="AUDIO"&&data.length==1025))
-      if((data[0]=="AUDIO"&&data.length==1025)&&(user!={{.user}})){
+      if((data[0]=="AUDIO")&&(user!={{.user}})){
         data = data.slice(1);
         var buffer = context.createBuffer(1,1024,44100);
         for(var i=0;i<1024;i++){
@@ -77,7 +76,7 @@
           source = null;
           data = null;
         },500);
-      } else if(!(data[0]=="AUDIO"&&data.length==1025)) {
+      } else if(!(data[0]=="AUDIO")) {
         display(JSON.parse(event.data));
       }
   }

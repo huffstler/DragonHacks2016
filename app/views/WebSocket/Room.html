@@ -50,7 +50,6 @@
 
   // Create a socket
   var socket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}'); //incoming socket
-  var outsocket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}'); //outgoing web socket
 
   // Display a message
   var display = function(event) {
@@ -86,7 +85,7 @@
   $('#send').click(function(e) {
     var message = $('#message').val()
     $('#message').val('')
-    outsocket.send(message)
+    socket.send(message)
   });
 
   $('#message').keypress(function(e) {
@@ -103,7 +102,7 @@
   mic.connect(fft);
   setInterval(function(){
     var waveform = fft.waveform();
-    outsocket.send("AUDIO,"+waveform.join());
+    socket.send("AUDIO,"+waveform.join());
     waveform = null;
   },10);
 

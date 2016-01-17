@@ -56,21 +56,26 @@
     $('#thread').append(tmpl('message_tmpl', {event: event}));
     $('#thread').scrollTo('max')
   }
+  var context = new window.AudioContext;
 
   // Message received on the socket
   socket.onmessage = function(event) {
-      var soundFile = new p5.SoundFile();
       var data = JSON.parse(event.data).Text.split(',');
       if(data[0]=="AUDIO"&&data.length==1025){
         data = data.slice(1);
-        soundFile.setBuffer([data]);
-        soundFile.play();
+        var buffer = context.createBuffer(1,1024,44100);
+        for(var i=0;i<1024;i++){
+          buffer.getChannelData(0)[i]=data[i]
+        }
+        var source = context.createBufferSource();
+        source.buffer = buffer;
+        source.connect(context.destination);
+        source.start();
         setTimeout(function(){
-          soundFile.stop()
+          source = null;
           data = null;
-          soundFile = null;
         },500);
-      }else {
+      } else {
         display(JSON.parse(event.data));
       }
   }
@@ -97,6 +102,6 @@
     var waveform = fft.waveform();
     socket.send("AUDIO,"+waveform.join());
     waveform = null;
-  },100);
+  },10);
 
 </script>

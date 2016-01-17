@@ -59,7 +59,7 @@
 
   // Message received on the socket
   socket.onmessage = function(event) {
-    display(JSON.parse(event.data))
+      display(JSON.parse(event.data));
   }
 
   $('#send').click(function(e) {
@@ -74,5 +74,16 @@
       e.preventDefault()
     }
   })
+  /*var mic;
+  var fft;
+  fft = new p5.FFT();
+  mic = new p5.AudioIn();
+  mic.start();
+  mic.connect(fft);
+  setInterval(function(){
+    waveform = fft.analyze();
+    //socket.send("AUDIO,"+waveform.join());
+  },46.44);
+*/
 
 </script>

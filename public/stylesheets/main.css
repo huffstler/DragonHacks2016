@@ -75,15 +75,6 @@ h2 {
     font-size: 14px;
 }
 
-#gobutton {
-    text-align: center;
-    font-size: 3em;
-}
-
-#gobutton:hover {
-    color: orange;
-}
-
 h1 {
     background: #111;
     margin: 0;

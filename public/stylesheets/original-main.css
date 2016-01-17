@@ -11,12 +11,11 @@ html, body {
 }
 
 #signin {
-    margin: auto;
+    margin: 10px auto;
     width: 400px;
     border: 8px solid #333;
-    border-radius: 16px;
     padding: 20px;
-    background: #eee;
+    background: #fff;
     text-align: left;
 }
 
@@ -40,13 +39,8 @@ html, body {
 }
 
 #signin #enter {
-
-    width: 100%;
-    padding: 5px;
-    color: black;
-    border: none;
-    background: transparent;
-    
+    display: block;
+    margin: 10px 0 0 160px;
 }
 
 #signin .error {
@@ -56,15 +50,6 @@ html, body {
     text-align: center;
     color: #fff;
     font-size: 14px;
-}
-
-#gobutton {
-    text-align: center;
-    font-size: 3em;
-}
-
-#gobutton:hover {
-    color: orange;
 }
 
 h1 {

@@ -59,7 +59,20 @@
 
   // Message received on the socket
   socket.onmessage = function(event) {
-      display(JSON.parse(event.data));
+      var soundFile = new p5.SoundFile();
+      var data = JSON.parse(event.data).Text.split(',');
+      if(data[0]=="AUDIO"&&data.length==1025){
+        data = data.slice(1);
+        soundFile.setBuffer([data]);
+        soundFile.play();
+        setTimeout(function(){
+          soundFile.stop()
+          data = null;
+          soundFile = null;
+        },500);
+      }else {
+        display(JSON.parse(event.data));
+      }
   }
 
   $('#send').click(function(e) {
@@ -74,16 +87,16 @@
       e.preventDefault()
     }
   })
-  /*var mic;
+  var mic;
   var fft;
   fft = new p5.FFT();
   mic = new p5.AudioIn();
   mic.start();
   mic.connect(fft);
   setInterval(function(){
-    waveform = fft.analyze();
-    //socket.send("AUDIO,"+waveform.join());
-  },46.44);
-*/
+    var waveform = fft.waveform();
+    socket.send("AUDIO,"+waveform.join());
+    waveform = null;
+  },10);
 
 </script>

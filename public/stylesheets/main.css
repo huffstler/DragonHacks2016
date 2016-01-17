@@ -15,11 +15,10 @@ html, body {
     text-align: center;
 }
 
-h2{
+h2 {
     font-size: 4em;
     color: #D09B2C;
     margin-bottom: -16px;
-    text-shadow: 4px 4px 4px 4px;
 }
 
 #signin {

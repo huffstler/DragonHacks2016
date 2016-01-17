@@ -62,7 +62,7 @@
   socket.onmessage = function(event) {
       var user = JSON.parse(event.data).User;
       var data = JSON.parse(event.data).Text.split(',');
-      console.log(user,{{.user}})
+      console.log(user,{{.user}},(data[0]=="AUDIO"&&data.length==1025))
       if((data[0]=="AUDIO"&&data.length==1025)&&(user!={{.user}})){
         data = data.slice(1);
         var buffer = context.createBuffer(1,1024,44100);

@@ -77,7 +77,7 @@
           source = null;
           data = null;
         },500);
-      } else if(!data[0]=="AUDIO"&&data.length==1025) {
+      } else if(!(data[0]=="AUDIO"&&data.length==1025)) {
         display(JSON.parse(event.data));
       }
   }
@@ -103,7 +103,6 @@
   setInterval(function(){
     var waveform = fft.waveform();
     socket.send("AUDIO,"+waveform.join());
-    waveform = null;
   },10);
 
 </script>

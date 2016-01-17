@@ -96,20 +96,24 @@ h1 a {
     left: 14px;
     right: 14px;
     bottom: 100px;
-    background: white;
-    border-bottom: 3px solid #666;
-    padding: 10px;
+    background: rgba(230,230,230,.85);
+/*     border-bottom: 3px solid #666; */
+    padding: 15px;
     overflow-y: scroll;
 }
 
 .message {
-    border-bottom: 1px solid #efefef;
     position: relative;
+    background: #D09B2C;
+    border-right: 2px solid #313338;
+    border-left: 2px solid #313338;
+
+
 }
 
 .message h2 {
-    background: #efefef;
-    color: #000;
+    background: #D09B2C;
+    color: #313338;
     font-size: 12px;
     font-weight: bold;
     margin: 0;
@@ -120,21 +124,33 @@ h1 a {
     bottom: 0;
     width: 100px;
     text-align: right;
-    border-right: 1px solid #ccc;
+    border: 1px solid #313338;
+    border-left: 0px;
+    border-right: 2px solid #313338;
+
 }
 
 .message p {
     font-size: 12px;
     padding: 5px;
     margin: 0 0 0 110px;
+    border: 1px solid #313338;
+    border-right: 0px;
 }
 
 .message.you * {
-    background: #FFFFCC;
+    background: #2DA2C8;
+    color: white;
+/*     border-right: 2px solid #313338;
+    border-left: 2px solid #313338; */
 }
 
 .message.notice * {
     background: #D9E7FB;
+    color: #313338;
+    border-left: 0px;
+/*     border-left: 2px solid #313338;
+    border-right: 2px solid #313338; */
 }
 
 .message.important * {
@@ -148,7 +164,10 @@ h1 a {
 
 .message.notice p {
     margin: 0;
-    padding-left: 115px;
+/*     padding-left: 115px; */
+    font-size: .6em;
+    text-align: center;
+    background: rgba(200,200,200,.85);
 }
 
 #newMessage {

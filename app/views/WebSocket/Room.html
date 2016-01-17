@@ -49,7 +49,8 @@
 <script type="text/javascript">
 
   // Create a socket
-  var socket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}')
+  var socket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}'); //incoming socket
+  var outsocket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}'); //outgoing web socket
 
   // Display a message
   var display = function(event) {
@@ -85,7 +86,7 @@
   $('#send').click(function(e) {
     var message = $('#message').val()
     $('#message').val('')
-    socket.send(message)
+    outsocket.send(message)
   });
 
   $('#message').keypress(function(e) {
@@ -102,7 +103,7 @@
   mic.connect(fft);
   setInterval(function(){
     var waveform = fft.waveform();
-    socket.send("AUDIO,"+waveform.join());
+    outsocket.send("AUDIO,"+waveform.join());
     waveform = null;
   },10);
 

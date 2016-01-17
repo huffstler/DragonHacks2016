@@ -61,6 +61,7 @@
   socket.onmessage = function(event) {
       var soundFile = new p5.SoundFile();
       var data = JSON.parse(event.data).Text.split(',');
+      console.log(data);
       if(data[0]=="AUDIO"&&data.length==1025){
         data = data.slice(1);
         soundFile.setBuffer([data]);

@@ -1,0 +1,189 @@
+html, body {
+    background: url(drexelstreet.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
+    padding: 0;
+    margin: 0;
+    color: #313338;
+    font-family: Helvetica, Arial, Sans;
+}
+
+#home {
+    margin: 100px auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 4em;
+    color: #D09B2C;
+    margin-bottom: -16px;
+}
+
+#signin {
+    margin: auto;
+    width: 400px;
+    border: 15px solid #D09B2C;
+    border-radius: 35px;
+    padding: 20px;
+    background: rgba(230,230,230,.85);
+    text-align: left;
+}
+
+#signin p {
+    margin: 5px 0;
+}
+
+#signin label {
+    font-size: 14px;
+    display: block;
+    width: 150px;
+    text-align: right;
+    float: left;
+    margin-right: 5px;
+    padding-top: 2px;
+}
+
+#signin #nick {
+    margin-left: 10px;
+    width: 200px;
+}
+
+#signin #enter {
+
+    width: 100%;
+    padding: 5px;
+    color: #2DA2C8;
+    font-size: 1.4em;
+    border: 4px solid #2DA2C8;
+    border-radius: 23px;
+    background: transparent;
+}
+
+#signin #enter:hover {
+    background: #2DA2C8;
+    color: #fff;
+}
+
+#signin .error {
+    background: #c00;
+    margin: 0 0 10px 0;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+h1 {
+    background: #111;
+    margin: 0;
+    color: gold;
+    padding: 7px 14px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+h1 a {
+    position: absolute;
+    right: 1em;
+    color: lightblue;
+}
+
+#thread {
+    position: fixed;
+    top: 50px;
+    left: 14px;
+    right: 14px;
+    bottom: 100px;
+    background: rgba(230,230,230,.85);
+/*     border-bottom: 3px solid #666; */
+    padding: 15px;
+    overflow-y: scroll;
+}
+
+.message {
+    position: relative;
+    background: #D09B2C;
+    border-right: 2px solid #313338;
+    border-left: 2px solid #313338;
+
+
+}
+
+.message h2 {
+    background: #D09B2C;
+    color: #313338;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    text-align: right;
+    border: 1px solid #313338;
+    border-left: 0px;
+    border-right: 2px solid #313338;
+
+}
+
+.message p {
+    font-size: 12px;
+    padding: 5px;
+    margin: 0 0 0 110px;
+    border: 1px solid #313338;
+    border-right: 0px;
+}
+
+.message.you * {
+    background: #2DA2C8;
+    color: white;
+/*     border-right: 2px solid #313338;
+    border-left: 2px solid #313338; */
+}
+
+.message.notice * {
+    background: #D9E7FB;
+    color: #313338;
+    border-left: 0px;
+/*     border-left: 2px solid #313338;
+    border-right: 2px solid #313338; */
+}
+
+.message.important * {
+    background: #c00;
+    color: #fff;
+}
+
+.message.notice h2 {
+    visibility: hidden;
+}
+
+.message.notice p {
+    margin: 0;
+/*     padding-left: 115px; */
+    font-size: .6em;
+    text-align: center;
+    background: rgba(200,200,200,.85);
+}
+
+#newMessage {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    bottom: 30px;
+    height: 55px;
+}
+
+#newMessage #message {
+    width: 90%;
+    padding: 5px;
+}
+
+#newMessage #send {
+    width: 8%;
+    padding: 2px;
+}

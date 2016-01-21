@@ -1,0 +1,107 @@
+{{set . "title" "Chat room"}}
+{{template "header.html" .}}
+
+<h1>WebSocket — You are now chatting as {{.user}}
+  <a href="/">Leave the chat room</a></h1>
+
+<div id="thread">
+  <script type="text/html" id="message_tmpl">
+    <% if(event.Type == 'message') { %>
+      <div class="message <%= event.User == '{{.user}}' ? 'you' : '' %>">
+        <h2><%= event.User %></h2>
+        <p>
+          <%= event.Text %>
+        </p>
+      </div>
+    <% } %>
+    <% if(event.Type == 'join') { %>
+      <div class="message notice">
+        <h2></h2>
+        <p>
+          <%= event.User %> Joined
+        </p>
+      </div>
+    <% } %>
+    <% if(event.Type == 'leave') { %>
+      <div class="message notice">
+        <h2></h2>
+        <p>
+          <%= event.User %> Disconnected
+        </p>
+      </div>
+    <% } %>
+    <% if(event.Type == 'quit') { %>
+      <div class="message important">
+        <h2></h2>
+        <p>
+          You are now disconnected!
+        </p>
+      </div>
+    <% } %>
+  </script>
+</div>
+
+<div id="newMessage">
+    <input type="submit" value="Send" id="send">
+    <input type="text" id="message" autocomplete="off" autofocus>
+</div>
+
+<script type="text/javascript">
+
+  // Create a socket
+  var socket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}'); //incoming socket
+
+  // Display a message
+  var display = function(event) {
+    $('#thread').append(tmpl('message_tmpl', {event: event}));
+    $('#thread').scrollTo('max')
+  }
+  var context = new window.AudioContext;
+
+  // Message received on the socket
+  socket.onmessage = function(event) {
+      var user = JSON.parse(event.data).User;
+      var data = JSON.parse(event.data).Text.split(',');
+      if((data[0]=="AUDIO")&&(user!={{.user}})){
+        data = data.slice(1);
+        var buffer = context.createBuffer(1,1024,44100);
+        for(var i=0;i<1024;i++){
+          buffer.getChannelData(0)[i]=data[i]
+        }
+        var source = context.createBufferSource();
+        source.buffer = buffer;
+        source.connect(context.destination);
+        source.start();
+        setTimeout(function(){
+          source = null;
+          data = null;
+        },500);
+      } else if(!(data[0]=="AUDIO")) {
+        display(JSON.parse(event.data));
+      }
+  }
+
+  $('#send').click(function(e) {
+    var message = $('#message').val()
+    $('#message').val('')
+    socket.send(message)
+  });
+
+  $('#message').keypress(function(e) {
+    if(e.charCode == 13 || e.keyCode == 13) {
+      $('#send').click()
+      e.preventDefault()
+    }
+  })
+  var mic;
+  var fft;
+  fft = new p5.FFT();
+  mic = new p5.AudioIn();
+  mic.start();
+  mic.connect(fft);
+  setInterval(function(){
+    var waveform = fft.waveform();
+    socket.send("AUDIO,"+waveform.join());
+  },10);
+
+</script>

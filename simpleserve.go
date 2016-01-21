@@ -41,8 +41,11 @@ func main() {
 					break;
 				}
 			}
+			
+			// outlining for audio operations
 		},
 	})
+
 
 	client.Attach(gumbleutil.Listener{
 		Disconnect: func(e *gumble.DisconnectEvent) {
